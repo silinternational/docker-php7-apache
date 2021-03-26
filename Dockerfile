@@ -31,7 +31,7 @@ RUN chmod a+x /usr/local/bin/whenavail
 RUN curl https://raw.githubusercontent.com/silinternational/runny/0.2/runny -o /usr/local/bin/runny
 RUN chmod a+x /usr/local/bin/runny
 
-# .htaccess file needs Rewrite and Headers modules
+# .htaccess files will very likely need Rewrite and Headers modules
 RUN a2enmod rewrite
 RUN a2enmod headers
 
