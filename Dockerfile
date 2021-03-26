@@ -23,9 +23,9 @@ RUN apt-get update -y && \
     docker-php-ext-install pdo pdo_mysql mbstring xml curl && \
     docker-php-ext-enable gd pdo pdo_mysql mbstring xml curl && \
     apt-get remove -y \
-        libfreetype6-dev \
-        libjpeg62-turbo-dev \
-        libpng-dev \
+        # Note: Don't remove "libfreetype6-dev". The gd extension depends on it.
+        # Note: Don't remove "libjpeg62-turbo-dev". The gd extension depends on it.
+        # Note: Don't remove "libpng-dev". The gd extension depends on it.
         libonig-dev \
         libxml2-dev \
         libcurl4-openssl-dev && \
