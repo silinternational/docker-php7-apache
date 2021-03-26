@@ -19,17 +19,17 @@ RUN apt-get update -y && \
         libcurl4-openssl-dev \
     && rm -rf /var/lib/apt/lists/*
 
-COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
-RUN curl https://bitbucket.org/silintl/docker-whenavail/raw/1.0.2/whenavail -o /usr/local/bin/whenavail
-RUN chmod a+x /usr/local/bin/whenavail
-RUN curl https://raw.githubusercontent.com/silinternational/runny/0.2/runny -o /usr/local/bin/runny
-RUN chmod a+x /usr/local/bin/runny
-
 # Install and enable, see the README on the docker hub for the image
 RUN docker-php-ext-configure gd --with-freetype=/usr/include --with-jpeg=/usr/include && \
     docker-php-ext-install -j$(nproc) gd && \
     docker-php-ext-install pdo pdo_mysql mbstring xml curl && \
     docker-php-ext-enable gd pdo pdo_mysql mbstring xml curl
+
+COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
+RUN curl https://bitbucket.org/silintl/docker-whenavail/raw/1.0.2/whenavail -o /usr/local/bin/whenavail
+RUN chmod a+x /usr/local/bin/whenavail
+RUN curl https://raw.githubusercontent.com/silinternational/runny/0.2/runny -o /usr/local/bin/runny
+RUN chmod a+x /usr/local/bin/runny
 
 # .htaccess file needs Rewrite and Headers modules
 RUN a2enmod rewrite
