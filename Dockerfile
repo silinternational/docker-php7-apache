@@ -16,14 +16,21 @@ RUN apt-get update -y && \
         libpng-dev \
         libonig-dev \
         libxml2-dev \
-        libcurl4-openssl-dev \
-    && rm -rf /var/lib/apt/lists/*
-
+        libcurl4-openssl-dev && \
 # Install and enable, see the README on the docker hub for the image
-RUN docker-php-ext-configure gd --with-freetype=/usr/include --with-jpeg=/usr/include && \
+    docker-php-ext-configure gd --with-freetype=/usr/include --with-jpeg=/usr/include && \
     docker-php-ext-install -j$(nproc) gd && \
     docker-php-ext-install pdo pdo_mysql mbstring xml curl && \
-    docker-php-ext-enable gd pdo pdo_mysql mbstring xml curl
+    docker-php-ext-enable gd pdo pdo_mysql mbstring xml curl && \
+    apt-get remove -y \
+        libfreetype6-dev \
+        libjpeg62-turbo-dev \
+        libpng-dev \
+        libonig-dev \
+        libxml2-dev \
+        libcurl4-openssl-dev && \
+    apt-get autoremove -y && \
+    rm -rf /var/lib/apt/lists/*
 
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 RUN curl https://bitbucket.org/silintl/docker-whenavail/raw/1.0.2/whenavail -o /usr/local/bin/whenavail
