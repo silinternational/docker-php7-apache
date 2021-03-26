@@ -35,6 +35,9 @@ RUN docker-php-ext-configure gd --with-freetype=/usr/include --with-jpeg=/usr/in
 RUN a2enmod rewrite
 RUN a2enmod headers
 
+# Make sure the default site is disabled
+RUN a2dissite 000-default
+
 # ErrorLog inside a VirtualHost block is ineffective for unknown reasons
 RUN sed -i -E 's@ErrorLog .*@ErrorLog /proc/self/fd/2@i' /etc/apache2/apache2.conf
 
@@ -42,8 +45,5 @@ RUN sed -i -E 's@ErrorLog .*@ErrorLog /proc/self/fd/2@i' /etc/apache2/apache2.co
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 EXPOSE 80
-
-# Make sure the default site is disabled
-RUN a2dissite 000-default
 
 CMD ["/data/run.sh"]
