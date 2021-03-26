@@ -2,7 +2,7 @@ FROM php:7.4-apache
 LABEL maintainer="matt_henderson@sil.org"
 
 RUN apt-get update -y && \
-    apt-get install -y \
+    apt-get install -y --no-install-recommends \
         unzip \
         zip \
         cron \
