@@ -35,8 +35,6 @@ RUN apt-get update -y && \
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 RUN curl https://bitbucket.org/silintl/docker-whenavail/raw/1.0.2/whenavail -o /usr/local/bin/whenavail
 RUN chmod a+x /usr/local/bin/whenavail
-RUN curl https://raw.githubusercontent.com/silinternational/runny/0.2/runny -o /usr/local/bin/runny
-RUN chmod a+x /usr/local/bin/runny
 
 # .htaccess files will very likely need Rewrite and Headers modules
 RUN a2enmod rewrite
