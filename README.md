@@ -5,7 +5,7 @@ A customized Docker image for running PHP 7 websites using Apache.
 ## Published Docker Image ##
 
 This Docker image is published on Docker Hub:  
-<https://hub.docker.com/repository/docker/silintl/php7-apache>
+<https://hub.docker.com/r/silintl/php7-apache>
 
 ## Recommendations ##
 
