@@ -1,0 +1,9 @@
+dockerfile-image-update:
+    image: salesforce/dockerfile-image-update
+    encrypted_env_file:
+        - env.encrypted
+    environment:
+        - git_api_url=https://api.github.com
+    # Override the entrypoint so we can call it using bash and pass in the
+    # version number from an environment variable:
+    entrypoint: /bin/bash
