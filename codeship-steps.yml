@@ -1,0 +1,4 @@
+- name: update-child-repos-via-PR
+  tag: ^[0-9.]+$
+  service: dockerfile-image-update
+  command: -c '/entrypoint.sh --org silinternational parent silintl/php7-apache ${CI_BRANCH} docker-image-versions-store'
