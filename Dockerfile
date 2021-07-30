@@ -1,4 +1,4 @@
-FROM php:7.4.21-apache
+FROM php:7.4.22-apache
 LABEL maintainer="matt_henderson@sil.org"
 
 RUN apt-get update -y && \
