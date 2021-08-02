@@ -7,3 +7,8 @@ dockerfile-image-update:
     # Override the entrypoint so we can call it using bash and pass in the
     # version number from an environment variable:
     entrypoint: /bin/bash
+
+php7-apache:
+    build:
+        image: silintl/php7-apache
+        dockerfile_path: ./Dockerfile
